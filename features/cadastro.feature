@@ -9,33 +9,22 @@ Funcionalidade: Cadastro
   Cenario: Fazer cadastro 
     
     Dado que acesso a página de cadastro
-    Quando submeto o meu cadastro completo
+    Quando submeto o seguinte formulário de cadastro:
+      |nome         |email            |senha|
+      |Roberto Filho|roberto@gmail.com|pwd123| 
     Então sou redirecionado para o Dashboard
-
-  @tentativa_cadastro
-  Cenario: Submeter cadastro sem o nome
-
+  
+  Esquema do Cenario: Tentativa de Cadastro
     Dado que acesso a página de cadastro
-    Quando submeto o meu cadastro sem o nome
-    Então vejo a mensagem de alerta: Oops. Informe seu nome completo!
+    Quando submeto o seguinte formulário de cadastro:
+      |nome        |email        |senha        |    
+      |<nome_input>|<email_input>|<senha_input>| 
+    Então vejo a mensagem de alerta: "<mensagem_output>"
 
-  @tentativa_cadastro
-  Cenario: Submeter cadastro sem o email
-
-    Dado que acesso a página de cadastro
-    Quando submeto o meu cadastro sem o email
-    Então vejo a mensagem de alerta: Oops. Informe um email válido!
-
-  @tentativa_cadastro
-  Cenario: Submeter cadastro com email inválido
-
-    Dado que acesso a página de cadastro
-    Quando submeto o meu cadastro com email inválido
-    Então vejo a mensagem de alerta: Oops. Informe um email válido!
-
-  @tentativa_cadastro
-  Cenario: Submeter cadasto sem a senha
-    
-    Dado que acesso a página de cadastro
-    Quando submeto o meu cadastro sem a senha
-    Então vejo a mensagem de alerta: Oops. Informe sua senha secreta!
+    Exemplos: 
+    |nome_input|email_input         |senha_input|mensagem_output                 |
+    |             |roberto@gmail.com|pwd123     |Oops. Informe seu nome completo!|
+    |Roberto Filho|                 |pwd123     |Oops. Informe um email válido!  |
+    |Roberto Filho|roberto%gmail.com|pwd123     |Oops. Informe um email válido!  |
+    |Roberto Filho|roberto*gmail.com|pwd123     |Oops. Informe um email válido!  |
+    |Roberto Filho|roberto@gmail.com|           |Oops. Informe sua senha secreta!|
