@@ -9,3 +9,4 @@ class MongoDB
     users.delete_many(email: email)
   end
 end
+
