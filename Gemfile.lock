@@ -95,7 +95,6 @@ PLATFORMS
 DEPENDENCIES
   capybara (= 3.36)
   cucumber (= 7.1)
-  faker (= 2.20)
   rspec (= 3.11)
   selenium-webdriver (= 4.1)
 
