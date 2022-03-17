@@ -1,4 +1,3 @@
-require_relative "routes/sessions"
 
 describe "POST /sessions" do
     context "Login com Sucesso" do

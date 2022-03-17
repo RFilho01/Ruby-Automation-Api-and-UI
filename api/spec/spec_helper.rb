@@ -1,3 +1,8 @@
+require_relative "routes/signup"
+require_relative "routes/sessions"
+require_relative "routes/equipos"
+require_relative "libs/mongo"
+require_relative "helpers"
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
