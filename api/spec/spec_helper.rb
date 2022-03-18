@@ -4,6 +4,12 @@ require_relative "routes/equipos"
 require_relative "libs/mongo"
 require_relative "helpers"
 
+require "digest/md5"
+
+def to_md5(pass) 
+  return Digest::MD5.hexdigest(pass)
+end
+
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
@@ -13,4 +19,19 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
   config.shared_context_metadata_behavior = :apply_to_host_groups
+
+  config.before(:suite) do
+    users = [
+      { name: "Roberto Filho", email: "roberto@gmail.com", password: to_md5("pwd123") }, 
+      { name: "Victoria", email: "victoria@gmail.com", password: to_md5("pwd123") }, 
+      { name: "Joao", email: "joao@ig.com", password: to_md5("pwd123") }, 
+      { name: "Tomate", email: "to@mate.com", password: to_md5("pwd123") }, 
+      { name: "Foca Azul", email: "foca@gmail.com", password: to_md5("pwd123") }, 
+      { name: "Ze Ramalho", email: "ze@ramalho.com", password: to_md5("pwd123") }, 
+      { name: "Geraldo Azevedo", email: "geraldo@azevedo.com", password: to_md5("pwd123") }, 
+    ]
+
+    MongoDB.new.drop_danger
+    MongoDB.new.insert_users(users)
+  end
 end

@@ -20,7 +20,7 @@ describe "POST /signup" do
     context "Usuario ja existe" do
         before(:all) do
             # Dado que tenho um novo usuário
-            payload = { name: "Joao", email: "joao@ig.com", password:"1213"}
+            payload = { name: "Joao", email: "joao@ig.com", password:"pwd123"}
             
             # E o email desse usuario já foi cadastrado no sistema
             Signup.new.create(payload)
@@ -41,7 +41,7 @@ describe "POST /signup" do
 
     context "Obrigatoriedade do campo Nome" do
         before(:all) do 
-            payload = {email: "user2@bol.com.br", password: "123321"}
+            payload = {email: "joao@ig.com", password: "pwd123"}
             @result = Signup.new.create(payload)
         end
 
@@ -56,7 +56,7 @@ describe "POST /signup" do
 
     context "Obrigatoriedade do campo email" do
         before(:all) do
-            payload = { nome: "Pedro", password: "321123" }
+            payload = { nome: "Joao", password: "pwd123" }
             @result = Signup.new.create(payload)
         end
 
